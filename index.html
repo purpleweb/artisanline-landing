@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArtisanLine — Le répondeur intelligent pour artisans</title>
+  <meta name="description" content="ArtisanLine qualifie vos appels, alerte par SMS en cas d'urgence et redirige vers un partenaire si vous êtes indisponible. Ne perdez plus jamais un client." />
+  <meta name="theme-color" content="#D85A30" />
+
+  <meta property="og:title" content="ArtisanLine — Le répondeur intelligent pour artisans" />
+  <meta property="og:description" content="SVI automatique, alertes SMS urgence, réseau de partenaires. Pour ne jamais perdre un client." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="#" class="logo">
+        <span class="logo__mark" aria-hidden="true">A</span>
+        <span class="logo__text">ArtisanLine</span>
+      </a>
+      <nav class="nav__links" aria-label="Navigation principale">
+        <a href="#fonctionnement">Comment ça marche</a>
+        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#tarifs">Tarifs</a>
+      </nav>
+      <a href="#cta" class="btn btn--ghost btn--sm">Être prévenu</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__circle hero__circle--lg"></div>
+        <div class="hero__circle hero__circle--sm"></div>
+      </div>
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <span class="badge">Pré-lancement · 2026</span>
+          <h1 class="hero__title">
+            Ne perdez plus jamais<br />
+            un client en intervention.
+          </h1>
+          <p class="hero__subtitle">
+            ArtisanLine est le répondeur intelligent qui qualifie vos appels,
+            vous alerte par SMS en cas d'urgence, et redirige vers un partenaire
+            de confiance <strong>de votre choix</strong> si vous êtes indisponible.
+          </p>
+
+          <form id="leadForm" class="lead-form" novalidate>
+            <label for="email" class="sr-only">Votre email professionnel</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="votre@email.fr"
+              required
+              autocomplete="email"
+            />
+            <button type="submit" class="btn btn--primary">
+              Être prévenu au lancement
+            </button>
+            <p class="lead-form__note" id="formStatus">
+              Rejoignez les artisans qui veulent tester en avant-première. Sans engagement.
+            </p>
+          </form>
+
+          <ul class="hero__tags" role="list">
+            <li>SVI automatique</li>
+            <li>Alertes SMS urgence</li>
+            <li>Réseau partenaires</li>
+            <li>Marketplace</li>
+          </ul>
+        </div>
+
+        <aside class="hero__phone" aria-hidden="true">
+          <div class="phone">
+            <div class="phone__notch"></div>
+            <div class="phone__screen">
+              <div class="phone__header">
+                <span>ArtisanLine</span>
+                <span class="phone__status"><i></i>Disponible</span>
+              </div>
+              <div class="phone__stats">
+                <div><strong>7</strong><span>Appels</span></div>
+                <div class="phone__stat--alert"><strong>2</strong><span>Urgences</span></div>
+                <div class="phone__stat--ok"><strong>5</strong><span>Devis</span></div>
+              </div>
+              <div class="phone__call phone__call--urgent">
+                <div class="phone__call-head">
+                  <strong>Marie Lecomte</strong>
+                  <span>Il y a 8 min</span>
+                </div>
+                <span class="tag tag--urgent">Urgence</span>
+                <p>Fuite sous l'évier — cuisine, 3e étage</p>
+                <div class="phone__actions">
+                  <button class="btn-mini btn-mini--accept">Je prends</button>
+                  <button class="btn-mini">Renvoyer</button>
+                </div>
+              </div>
+              <div class="phone__call">
+                <div class="phone__call-head">
+                  <strong>Paul Renard</strong>
+                  <span>Il y a 32 min</span>
+                </div>
+                <span class="tag tag--devis">Devis</span>
+                <p>Remplacement chauffe-eau</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="problem">
+      <div class="container problem__grid">
+        <div class="problem__card problem__card--issue">
+          <h2>Le problème</h2>
+          <ul>
+            <li><strong>80%</strong> des clients qui tombent sur un répondeur raccrochent sans laisser de message.</li>
+            <li>Un plombier en intervention <strong>ne peut pas décrocher</strong>.</li>
+            <li>Les <strong>urgences</strong> — les interventions les plus lucratives — partent à la concurrence.</li>
+          </ul>
+        </div>
+        <div class="problem__card problem__card--solution">
+          <h2>La solution</h2>
+          <p>
+            Un répondeur SVI <em>(Serveur Vocal Interactif&nbsp;: le menu "tapez 1, tapez 2…" qui guide l'appelant)</em>
+            qui <strong>qualifie automatiquement l'appel</strong>
+            (urgence / devis / message), vous <strong>alerte par SMS</strong>,
+            et redirige vers un <strong>partenaire de confiance</strong>
+            <em>(que vous choisissez vous-même, si vous le souhaitez)</em>
+            si vous êtes indisponible — pour ne jamais perdre un client.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="fonctionnement">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow">Comment ça marche</span>
+          <h2>Trois touches. Zéro client perdu.</h2>
+          <p>Le client choisit, ArtisanLine fait le reste.</p>
+        </header>
+
+        <div class="how__steps">
+          <article class="how__step">
+            <div class="how__num">1</div>
+            <h3>Urgence</h3>
+            <p>Fuite, panne, dégât des eaux.</p>
+            <span class="how__arrow">→ SMS d'alerte immédiat à l'artisan</span>
+          </article>
+          <article class="how__step">
+            <div class="how__num how__num--2">2</div>
+            <h3>Demande de devis</h3>
+            <p>Le client laisse ses coordonnées.</p>
+            <span class="how__arrow">→ Formulaire + rappel en fin de journée</span>
+          </article>
+          <article class="how__step">
+            <div class="how__num how__num--3">3</div>
+            <h3>Laisser un message</h3>
+            <p>Message vocal classique.</p>
+            <span class="how__arrow">→ Enregistrement + notification</span>
+          </article>
+        </div>
+
+        <div class="flow">
+          <h3>Le flux urgence en détail</h3>
+          <ol class="flow__list">
+            <li><span>1</span>Client appelle et tape <strong>1</strong></li>
+            <li><span>2</span>Laisse son nom et son adresse en vocal</li>
+            <li><span>3</span>L'artisan reçoit un <strong>SMS d'alerte</strong> avec les infos</li>
+            <li class="flow__list--ok"><span>4</span>Répond <strong>"O"</strong> → il prend le client</li>
+            <li class="flow__list--ko"><span>5</span>Répond <strong>"N"</strong> → renvoi automatique au partenaire #1 disponible</li>
+            <li><span>6</span>Pas de réponse sous <strong>5 min</strong> → même renvoi automatique</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="fonctionnalites">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow">Fonctionnalités clés</span>
+          <h2>Tout ce qu'il vous faut, rien de plus.</h2>
+        </header>
+
+        <div class="features__grid">
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <h3>Répondeur SVI intelligent</h3>
+            <p>Menu vocal automatique (tapez 1, 2, 3) qui qualifie chaque appel entrant. Configurable en quelques minutes depuis l'app.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3>Alertes SMS urgence en temps réel</h3>
+            <p>Dès qu'un client signale une urgence, recevez un SMS avec le nom, l'adresse et le problème. Réponse en un mot : "O" ou "N".</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Réseau de partenaires de confiance</h3>
+            <p>Choisissez vos partenaires et leur ordre de priorité. En cas d'indisponibilité, le client est automatiquement redirigé. Compteur de réciprocité intégré.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+            <h3>Marketplace urgences <span class="badge--v2">V2</span></h3>
+            <p>Les urgences non prises sont proposées à des artisans hors réseau. Ils voient la zone et le type avant d'acheter le lead (15-25€).</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <h3>Dashboard & historique</h3>
+            <p>Tous vos appels centralisés : urgences, devis, messages, renvois. Stats mensuelles pour suivre les clients gagnés.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Disponibilité configurable</h3>
+            <p>Mode disponible / indisponible activable en un tap. Gestion des horaires nuit/weekend. L'app sait quand activer le renvoi automatique.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="tarifs">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow">Tarifs prévus</span>
+          <h2>Simple, sans commission sur vos interventions.</h2>
+          <p>Vous restez maître de votre activité. ArtisanLine ne prend rien sur vos chantiers.</p>
+        </header>
+
+        <div class="pricing__grid">
+          <article class="plan">
+            <h3>Solo</h3>
+            <div class="plan__price"><span>39€</span>/mois</div>
+            <ul>
+              <li>Répondeur SVI</li>
+              <li>Alertes SMS urgence</li>
+              <li>Réseau partenaires (gratuit)</li>
+              <li>Dashboard appels</li>
+              <li>Rayon marketplace : 5 km</li>
+            </ul>
+            <a href="#cta" class="btn btn--outline">Être prévenu</a>
+          </article>
+
+          <article class="plan plan--featured">
+            <span class="plan__tag">Recommandé</span>
+            <h3>Réseau</h3>
+            <div class="plan__price"><span>59€</span>/mois</div>
+            <ul>
+              <li>Tout Solo, plus :</li>
+              <li>Gestion multi-partenaires</li>
+              <li>Stats de réciprocité</li>
+              <li>Priorité marketplace</li>
+              <li>Rayon marketplace : 15 km</li>
+            </ul>
+            <a href="#cta" class="btn btn--primary">Être prévenu</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="cta">
+      <div class="container">
+        <div class="cta__card">
+          <h2>Soyez parmi les 20 premiers artisans pilotes.</h2>
+          <p>
+            Lancement en Île-de-France. Tarif préférentiel, accompagnement direct,
+            et votre voix prise en compte dans les décisions produit.
+          </p>
+          <form id="leadFormBottom" class="lead-form lead-form--lg" novalidate>
+            <label for="emailBottom" class="sr-only">Votre email professionnel</label>
+            <input
+              type="email"
+              id="emailBottom"
+              name="email"
+              placeholder="votre@email.fr"
+              required
+              autocomplete="email"
+            />
+            <button type="submit" class="btn btn--primary">Rejoindre la liste</button>
+            <p class="lead-form__note" id="formStatusBottom">
+              Pas de spam. Un seul email au lancement.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="logo__mark" aria-hidden="true">A</span>
+        <strong>ArtisanLine</strong>
+      </div>
+      <p>© 2026 ArtisanLine — Un projet Purpleweb. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
