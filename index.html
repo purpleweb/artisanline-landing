@@ -51,7 +51,19 @@
             de confiance <strong>de votre choix</strong> si vous êtes indisponible.
           </p>
 
-          <form id="leadForm" class="lead-form" novalidate>
+          <form
+            id="leadForm"
+            class="lead-form"
+            name="leads"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            novalidate
+          >
+            <input type="hidden" name="form-name" value="leads" />
+            <p class="hp-field" aria-hidden="true">
+              <label>Ne pas remplir : <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+            </p>
             <label for="email" class="sr-only">Votre email professionnel</label>
             <input
               type="email"
@@ -289,7 +301,19 @@
             Lancement en Île-de-France. Tarif préférentiel, accompagnement direct,
             et votre voix prise en compte dans les décisions produit.
           </p>
-          <form id="leadFormBottom" class="lead-form lead-form--lg" novalidate>
+          <form
+            id="leadFormBottom"
+            class="lead-form lead-form--lg"
+            name="leads"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            novalidate
+          >
+            <input type="hidden" name="form-name" value="leads" />
+            <p class="hp-field" aria-hidden="true">
+              <label>Ne pas remplir : <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+            </p>
             <label for="emailBottom" class="sr-only">Votre email professionnel</label>
             <input
               type="email"

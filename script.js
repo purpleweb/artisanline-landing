@@ -1,10 +1,23 @@
 /* ============================================================
    ArtisanLine — Lead capture
    ============================================================
-   To wire to a real backend, set ENDPOINT below to a Formspree
-   form ID (https://formspree.io) or a Netlify/your-own endpoint
-   that accepts JSON { email }. Until then, the form stores
-   submissions in localStorage so you can verify the flow.
+   Two modes are supported, in order of preference:
+
+   1. Netlify Forms (zero config — recommended)
+      The HTML <form> has data-netlify="true" + a hidden
+      "form-name" field. When the site is deployed on Netlify,
+      submissions are auto-captured (Netlify dashboard → Forms).
+      This script POSTs URL-encoded data to "/" — the format
+      Netlify expects — so the static-page redirect doesn't fire.
+
+   2. Custom endpoint
+      Set ENDPOINT below to a Formspree form URL or your own
+      JSON endpoint. Used as fallback when Netlify isn't detected.
+
+   3. Demo (no config)
+      If neither is set, submissions are stored in localStorage
+      so you can verify the flow. Look in DevTools → Application
+      → Local Storage → key "artisanline_leads".
    ============================================================ */
 
 const ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxxxxxx'
@@ -19,22 +32,59 @@ function setStatus(form, message, kind) {
   if (kind) form.classList.add(`is-${kind}`);
 }
 
-async function submitLead(email) {
-  if (!ENDPOINT) {
-    // Demo fallback: store locally
-    const stored = JSON.parse(localStorage.getItem('artisanline_leads') || '[]');
-    stored.push({ email, at: new Date().toISOString() });
-    localStorage.setItem('artisanline_leads', JSON.stringify(stored));
-    return { ok: true, demo: true };
+function encodeFormData(data) {
+  return Object.keys(data)
+    .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
+    .join('&');
+}
+
+function detectMode(form) {
+  // Netlify mode is identified by the hidden "form-name" input
+  // (it's what we explicitly add and what Netlify needs in the POST).
+  if (form.querySelector('input[name="form-name"]')) return 'netlify';
+  if (ENDPOINT) return 'endpoint';
+  return 'demo';
+}
+
+async function submitLead(form, email) {
+  const mode = detectMode(form);
+  console.log('[ArtisanLine] submitting in mode:', mode);
+
+  if (mode === 'netlify') {
+    const formName =
+      form.querySelector('input[name="form-name"]').value ||
+      form.getAttribute('name') ||
+      'leads';
+    const body = encodeFormData({
+      'form-name': formName,
+      email,
+      'bot-field': '' // honeypot — must stay empty
+    });
+    const res = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body
+    });
+    if (!res.ok) {
+      console.warn('[ArtisanLine] Netlify POST failed:', res.status, res.statusText);
+    }
+    return { ok: res.ok, mode };
   }
 
-  const res = await fetch(ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({ email })
-  });
+  if (mode === 'endpoint') {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    return { ok: res.ok, mode };
+  }
 
-  return { ok: res.ok };
+  // demo fallback
+  const stored = JSON.parse(localStorage.getItem('artisanline_leads') || '[]');
+  stored.push({ email, at: new Date().toISOString() });
+  localStorage.setItem('artisanline_leads', JSON.stringify(stored));
+  return { ok: true, mode };
 }
 
 function attachForm(formId) {
@@ -58,10 +108,10 @@ function attachForm(formId) {
     button.textContent = 'Envoi…';
 
     try {
-      const result = await submitLead(email);
+      const result = await submitLead(form, email);
       if (result.ok) {
-        const msg = result.demo
-          ? '✓ Inscrit. (Mode démo : email stocké localement — branchez ENDPOINT pour la prod.)'
+        const msg = result.mode === 'demo'
+          ? '✓ Inscrit. (Mode démo : email stocké localement — déployez sur Netlify pour la prod.)'
           : '✓ Merci ! On vous contacte au lancement.';
         setStatus(form, msg, 'success');
         input.value = '';
