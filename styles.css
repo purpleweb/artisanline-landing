@@ -796,6 +796,11 @@ p { margin: 0 0 1em; }
   .flow__visual img { max-width: 220px; }
 }
 
+@media (max-width: 760px) {
+  .flow__visual { display: none; }
+  .flow { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 600px) {
   .flow { padding: 24px; }
 }
