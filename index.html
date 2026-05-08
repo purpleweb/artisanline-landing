@@ -185,15 +185,26 @@
         </div>
 
         <div class="flow">
-          <h3>Le flux urgence en détail</h3>
-          <ol class="flow__list">
-            <li><span>1</span>Client appelle et tape <strong>1</strong></li>
-            <li><span>2</span>Laisse son nom et son adresse en vocal</li>
-            <li><span>3</span>L'artisan reçoit un <strong>SMS d'alerte</strong> avec les infos</li>
-            <li class="flow__list--ok"><span>4</span>Répond <strong>"O"</strong> → il prend le client</li>
-            <li class="flow__list--ko"><span>5</span>Répond <strong>"N"</strong> → renvoi automatique au partenaire #1 disponible</li>
-            <li><span>6</span>Pas de réponse sous <strong>5 min</strong> → même renvoi automatique</li>
-          </ol>
+          <div class="flow__visual" aria-hidden="true">
+            <img
+              src="img/artisan-illustration.png"
+              alt=""
+              loading="lazy"
+              width="640"
+              height="640"
+            />
+          </div>
+          <div class="flow__body">
+            <h3>Le flux urgence en détail</h3>
+            <ol class="flow__list">
+              <li><span>1</span>Client appelle et tape <strong>1</strong></li>
+              <li><span>2</span>Laisse son nom et son adresse en vocal</li>
+              <li><span>3</span>L'artisan reçoit un <strong>SMS d'alerte</strong> avec les infos</li>
+              <li class="flow__list--ok"><span>4</span>Répond <strong>"O"</strong> → il prend le client</li>
+              <li class="flow__list--ko"><span>5</span>Répond <strong>"N"</strong> → renvoi automatique au partenaire #1 disponible</li>
+              <li><span>6</span>Pas de réponse sous <strong>5 min</strong> → même renvoi automatique</li>
+            </ol>
+          </div>
         </div>
       </div>
     </section>
