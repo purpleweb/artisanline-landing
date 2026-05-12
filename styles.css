@@ -962,6 +962,13 @@ p { margin: 0 0 1em; }
   margin-bottom: 8px;
 }
 
+.plan__lede {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin: 0 0 18px;
+  min-height: 2.6em;
+}
+
 .plan__price {
   font-size: 1rem;
   color: var(--muted);
@@ -973,6 +980,18 @@ p { margin: 0 0 1em; }
   color: var(--ink);
   letter-spacing: -0.03em;
 }
+.plan__price em {
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+.plan__fineprint {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: -14px 0 22px;
+}
 
 .plan ul {
   margin: 0 0 30px;
@@ -981,6 +1000,7 @@ p { margin: 0 0 1em; }
   display: grid;
   gap: 12px;
   flex: 1;
+  align-content: start;
 }
 .plan ul li {
   position: relative;
