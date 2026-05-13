@@ -204,8 +204,15 @@ p { margin: 0 0 1em; }
 
 .nav__links a:hover { color: var(--primary); }
 
+.nav__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 @media (max-width: 760px) {
   .nav__links { display: none; }
+  .nav__actions .btn--ghost { display: none; }
 }
 
 /* ============================================================
@@ -362,6 +369,30 @@ p { margin: 0 0 1em; }
 }
 
 .lead-form--lg input[type="email"] { padding: 16px 18px; font-size: 1.05rem; }
+
+.hero__demo-link {
+  margin: 14px 0 0;
+  padding-left: 8px;
+  font-size: 0.95rem;
+}
+.hero__demo-link a {
+  color: #fff;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding-bottom: 1px;
+  transition: border-color 0.2s ease;
+}
+.hero__demo-link a:hover {
+  border-bottom-color: #fff;
+}
+.hero__demo-link span {
+  display: inline-block;
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+}
+.hero__demo-link a:hover span {
+  transform: translateX(3px);
+}
 
 .lead-form.is-success {
   background: var(--accept-soft);

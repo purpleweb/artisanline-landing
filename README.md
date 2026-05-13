@@ -1,5 +1,6 @@
-python3 -m http.server 8765
-
+```bash
+python3 -m http.server 8000
+```
 
 idée pour plus tard :
 
@@ -46,8 +47,20 @@ CONSIGNES TECHNIQUES
 6. Vérifie le responsive (mobile, tablette, desktop)
 7. Ne modifie aucune autre section de la page
 
+
 Avant de commencer, montre-moi d'abord :
 - Le(s) fichier(s) que tu vas modifier
 - Un aperçu des changements proposés
 
 Puis applique les modifications.
+# ArtisanLine — Landing
+
+Landing page statique pour ArtisanLine, le répondeur intelligent pour artisans.
+
+## Démo locale
+
+Site statique (HTML/CSS/JS, pas de build). Depuis la racine du projet :
+
+```bash
+python3 -m http.server 8000
+```
