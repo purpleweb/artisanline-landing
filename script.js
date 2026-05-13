@@ -1,26 +1,16 @@
 /* ============================================================
-   ArtisanLine — Lead capture
+   ArtisanLine — Lead capture (Supabase)
    ============================================================
-   Two modes are supported, in order of preference:
+   Les emails sont insérés dans la table public.contacts
+   via l'API REST Supabase (PostgREST).
 
-   1. Netlify Forms (zero config — recommended)
-      The HTML <form> has data-netlify="true" + a hidden
-      "form-name" field. When the site is deployed on Netlify,
-      submissions are auto-captured (Netlify dashboard → Forms).
-      This script POSTs URL-encoded data to "/" — the format
-      Netlify expects — so the static-page redirect doesn't fire.
-
-   2. Custom endpoint
-      Set ENDPOINT below to a Formspree form URL or your own
-      JSON endpoint. Used as fallback when Netlify isn't detected.
-
-   3. Demo (no config)
-      If neither is set, submissions are stored in localStorage
-      so you can verify the flow. Look in DevTools → Application
-      → Local Storage → key "artisanline_leads".
+   Prérequis côté Supabase :
+     - RLS activé sur public.contacts
+     - Policy INSERT autorisée au rôle "anon"
    ============================================================ */
 
-const ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxxxxxx'
+const SUPABASE_URL = 'https://ymafstnlvgyxniuwkgfd.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_pVKeUlZ8O56-yuK7twDZEw_ZYKSh0wc';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -32,59 +22,23 @@ function setStatus(form, message, kind) {
   if (kind) form.classList.add(`is-${kind}`);
 }
 
-function encodeFormData(data) {
-  return Object.keys(data)
-    .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
-    .join('&');
-}
+async function submitLead(email) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/contacts`, {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify({ email })
+  });
 
-function detectMode(form) {
-  // Netlify mode is identified by the hidden "form-name" input
-  // (it's what we explicitly add and what Netlify needs in the POST).
-  if (form.querySelector('input[name="form-name"]')) return 'netlify';
-  if (ENDPOINT) return 'endpoint';
-  return 'demo';
-}
-
-async function submitLead(form, email) {
-  const mode = detectMode(form);
-  console.log('[ArtisanLine] submitting in mode:', mode);
-
-  if (mode === 'netlify') {
-    const formName =
-      form.querySelector('input[name="form-name"]').value ||
-      form.getAttribute('name') ||
-      'leads';
-    const body = encodeFormData({
-      'form-name': formName,
-      email,
-      'bot-field': '' // honeypot — must stay empty
-    });
-    const res = await fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body
-    });
-    if (!res.ok) {
-      console.warn('[ArtisanLine] Netlify POST failed:', res.status, res.statusText);
-    }
-    return { ok: res.ok, mode };
+  if (!res.ok) {
+    const text = await res.text().catch(() => '');
+    console.warn('[ArtisanLine] Supabase insert failed:', res.status, text);
   }
-
-  if (mode === 'endpoint') {
-    const res = await fetch(ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-    return { ok: res.ok, mode };
-  }
-
-  // demo fallback
-  const stored = JSON.parse(localStorage.getItem('artisanline_leads') || '[]');
-  stored.push({ email, at: new Date().toISOString() });
-  localStorage.setItem('artisanline_leads', JSON.stringify(stored));
-  return { ok: true, mode };
+  return { ok: res.ok };
 }
 
 function attachForm(formId) {
@@ -95,7 +49,15 @@ function attachForm(formId) {
     e.preventDefault();
     const input = form.querySelector('input[type="email"]');
     const button = form.querySelector('button[type="submit"]');
+    const honeypot = form.querySelector('input[name="bot-field"]');
     const email = (input.value || '').trim();
+
+    // Honeypot: si rempli, on simule un succès sans rien envoyer
+    if (honeypot && honeypot.value) {
+      setStatus(form, '✓ Merci ! On vous contacte au lancement.', 'success');
+      input.value = '';
+      return;
+    }
 
     if (!EMAIL_RE.test(email)) {
       setStatus(form, 'Merci de saisir un email valide.', 'error');
@@ -108,12 +70,9 @@ function attachForm(formId) {
     button.textContent = 'Envoi…';
 
     try {
-      const result = await submitLead(form, email);
+      const result = await submitLead(email);
       if (result.ok) {
-        const msg = result.mode === 'demo'
-          ? '✓ Inscrit. (Mode démo : email stocké localement — déployez sur Netlify pour la prod.)'
-          : '✓ Merci ! On vous contacte au lancement.';
-        setStatus(form, msg, 'success');
+        setStatus(form, '✓ Merci ! On vous contacte au lancement.', 'success');
         input.value = '';
       } else {
         setStatus(form, 'Oups, problème côté serveur. Réessayez dans un instant.', 'error');
