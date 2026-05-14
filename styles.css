@@ -3,6 +3,7 @@
    ============================================================ */
 
 :root {
+  color-scheme: light;
   --primary: #D85A30;
   --primary-dark: #B8441E;
   --primary-light: #F4A285;
