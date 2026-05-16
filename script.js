@@ -9,8 +9,8 @@
      - Policy INSERT autorisée au rôle "anon"
    ============================================================ */
 
-const SUPABASE_URL = 'https://ymafstnlvgyxniuwkgfd.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_pVKeUlZ8O56-yuK7twDZEw_ZYKSh0wc';
+const SUPABASE_URL = 'https://afsqltomzhadifflvqto.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_4yD5dvbMciv2LlpOR-K-fQ_TShkqL1v';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
