@@ -970,9 +970,9 @@ p { margin: 0 0 1em; }
 
 .pricing__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 24px;
-  max-width: 880px;
+  max-width: 440px;
   margin: 0 auto;
 }
 
