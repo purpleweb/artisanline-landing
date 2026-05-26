@@ -4,12 +4,12 @@
         <rect width="32" height="32" rx="8" ry="8"/>
     </clipPath>
   </defs>
-  <rect width="32" height="32" rx="8" ry="8" fill="#D85A30"/>
-  <!-- <rect x="0" y="29" width="32"  height="9" clip-path="url(#clip)"   fill="#2BA579"/> -->
+  <rect width="32" height="32" rx="8" ry="8" fill="#B85C38"/>
+  <!-- <rect x="0" y="29" width="32"  height="9" clip-path="url(#clip)"   fill="#2F8F68"/> -->
 
   <polygon
     points="32,18 32,32 20,32"
-    fill="#2BA579"
+    fill="#2F8F68"
     clip-path="url(#clip)"
   />
 
